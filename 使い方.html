@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GUI Design Studio v1.00 | 使い方</title>
+<style>
+:root{--bg:#f0f5fb;--surface:#ffffff;--alt:#e6effb;--accent:#246bc4;--accent2:#1453a1;--text:#253a53;--muted:#61758e;--border:#bed0e5;--shadow:0 9px 30px rgba(37,58,83,.08)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:"Yu Gothic UI","Meiryo","Noto Sans CJK JP","Hiragino Kaku Gothic ProN",sans-serif;font-size:15px;line-height:1.85}
+header{background:#fff;border-bottom:1px solid var(--border)}.head,.layout{max-width:1140px;margin:auto;padding:24px 22px}.head{padding-top:30px;padding-bottom:26px}.eyebrow{color:var(--accent);font-weight:700;font-size:12px;letter-spacing:.06em}h1{font-size:clamp(26px,4.5vw,36px);letter-spacing:-.02em;margin:3px 0 8px}h2{margin:0 0 16px;font-size:21px;border-left:4px solid var(--accent);padding-left:12px;line-height:1.55}h3{font-size:16px;margin:0 0 8px}.lead{margin:0;color:var(--muted);font-size:15px}.pill{display:inline-block;margin-top:13px;padding:3px 11px;border:1px solid var(--border);background:#f3f8ff;border-radius:99px;font-size:12px;color:var(--muted)}
+nav{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 22px}nav a{text-decoration:none;color:var(--accent2);background:white;border:1px solid var(--border);border-radius:6px;font-size:13px;padding:7px 11px;font-weight:600}nav a:hover{background:#e8f1ff}
+section{padding:23px 27px;margin-bottom:18px;background:var(--surface);border:1px solid var(--border);border-radius:11px;box-shadow:var(--shadow)}p{margin:10px 0}li{margin:6px 0}ol,ul{padding-left:26px}.shot{width:100%;height:auto;display:block;border:1px solid var(--border);border-radius:7px}.figure{margin:0}.figure figcaption{margin-top:8px;color:var(--muted);font-size:12px}
+.steps{counter-reset:step;list-style:none;padding:0;margin:0}.steps li{position:relative;padding-left:48px;margin:0 0 17px;min-height:32px}.steps li:before{counter-increment:step;content:counter(step);display:inline-flex;align-items:center;justify-content:center;position:absolute;top:0;left:0;width:30px;height:30px;border-radius:8px;background:var(--accent);color:white;font-weight:bold}
+.table-wrap{width:100%;overflow:auto}table{border-collapse:collapse;width:100%;font-size:14px}th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--border);vertical-align:top}th{background:var(--alt);font-weight:700}tbody tr:nth-child(even){background:#f8fbff}
+pre{margin:12px 0;background:#172941;color:#f4f8ff;padding:15px;border-radius:8px;overflow:auto;font-family:Consolas,"Cascadia Code",monospace;font-size:13px;line-height:1.7}code{font-family:Consolas,"Cascadia Code",monospace;background:#edf3fa;padding:2px 5px;border-radius:4px;font-size:.93em}pre code{background:transparent;padding:0}.notice{padding:12px 14px;background:#f4f8ff;border-left:3px solid var(--accent);margin-top:14px;border-radius:4px}.warn{background:#fff9ec;border-left-color:#b88332}
+footer{max-width:1140px;margin:auto;padding:6px 22px 35px;color:var(--muted);font-size:12px}a{color:var(--accent)}.tag{font-size:12px;color:var(--muted);font-weight:600}@media(max-width:650px){.head,.layout{padding-left:13px;padding-right:13px}section{padding:17px 15px}table{font-size:12px}}
+</style>
+</head>
+<body>
+<header><div class="head"><div class="eyebrow">GUI DESIGN STUDIO / USER GUIDE</div><h1>GUI Design Studio v1.00</h1><p class="lead">Python/Tkinterアプリの配色と形状を選び、プレビューし、テーマとして保存・出力します。</p><span class="pill">Windows向け · ローカルで閲覧可能 · 追加フォント不要</span></div></header>
+<main class="layout"><nav aria-label="目次"><a href="#overview">画面</a><a href="#start">起動</a><a href="#edit">デザイン調整</a><a href="#save">保存・出力</a><a href="#apply">アプリに適用</a><a href="#mode">描画方式</a><a href="#notes">FAQ</a></nav>
+<section id="overview"><h2>画面の概要</h2><figure class="figure"><img class="shot" src="docs/画面見本_Windows実機.png" alt="GUI Design StudioのWindows実行画面：左にテーマギャラリー、中央にプレビュー、右に詳細設定" loading="eager"><figcaption>画面見本（Windows実機）。左：テーマギャラリー／中央：プレビュー／右：詳細設定。</figcaption></figure>
+<p>GUI Design Studioは、Tkinter／ttk向けの配色・部品のデザインを選び、細かく調整してアプリに再利用するためのツールです。追加ライブラリは不要です。</p></section>
+<section id="start"><h2>起動と画面の使い方</h2><ol class="steps">
+<li>Python 3.10以上を用意し、<code>gui_design_studio.py</code> と <code>theme_data.py</code>、<code>theme_runtime.py</code> を同じフォルダに配置します。</li>
+<li>次のコマンドで起動します。<pre><code>python gui_design_studio.py</code></pre></li>
+<li>左側の「配色」タブで色の組み合わせを選び、「形状」タブで部品の見た目を選びます。配色と形状は別々に選択できます。</li>
+<li>中央のプレビューで見た目を確認し、調整したい部品をクリックして右側の「詳細設定」へ移動します。</li>
+</ol><div class="notice">配色プリセット20種類と形状プリセット4種類を用意しています。細かな設定は右側で調整できます。</div></section>
+<section id="edit"><h2>色・部品の見た目を調整する</h2>
+<div class="table-wrap"><table><thead><tr><th>画面位置</th><th>操作</th></tr></thead><tbody>
+<tr><td>左：配色</td><td>背景色、アクセント色などの配色プリセットを選択</td></tr>
+<tr><td>左：形状</td><td>ボタン等の形状プリセットを選択</td></tr>
+<tr><td>中央：プレビュー</td><td>ボタン、入力欄、チェックボックス、スクロールバーなどの見え方を確認。部品をクリックすると対応する設定を開けます。</td></tr>
+<tr><td>右：詳細設定</td><td>カラー／部品ごとの設定を選び、必要な項目だけ調整</td></tr>
+<tr><td>画面下部</td><td>現在の配色・形状と未保存状態を確認</td></tr>
+</tbody></table></div>
+<p>デザイン変更に未保存の項目があると、別テーマを選ぶ際に確認が表示されることがあります。</p>
+</section>
+<section id="save"><h2>保存・読み込み・出力</h2>
+<ol class="steps">
+<li>編集中の配色や形状を後で再編集したい場合は、右上の <strong>「マイテーマに保存」</strong> を押して名前を付けます。</li>
+<li>保存済みのものは左側の <strong>「マイテーマ」</strong> タブから選んで読み込めます。お気に入り登録もできます。</li>
+<li>ほかのPythonアプリで使うには、右上の <strong>「ファイルに出力」</strong> を押します。</li>
+<li>出力される <code>design_theme.json</code>（設定データ）と <code>design_theme.py</code>（適用処理）を利用先アプリのフォルダに配置します。</li>
+</ol>
+<div class="table-wrap"><table><thead><tr><th>ファイル</th><th>役割</th></tr></thead><tbody>
+<tr><td><code>design_theme.json</code></td><td>色や部品オプションなどの設定値を保存</td></tr>
+<tr><td><code>design_theme.py</code></td><td>Pythonアプリ側で読み込み、ttkスタイルなどを適用</td></tr>
+</tbody></table></div>
+<div class="notice">「マイテーマに保存」はStudio内部での保存、「ファイルに出力」はほかのアプリで使うための書き出しです。役割が異なります。</div></section>
+<section id="apply"><h2>Pythonアプリへの適用</h2>
+<p>基本的な呼び出し例です。利用先アプリと同じフォルダに <code>design_theme.py</code> を配置してください。</p>
+<pre><code>import tkinter as tk
+from tkinter import ttk
+from design_theme import apply_theme
+
+root = tk.Tk()
+apply_theme(root)
+ttk.Button(root, text="実行").pack(padx=20, pady=20)
+root.mainloop()</code></pre>
+<div class="notice warn"><strong>適用範囲：</strong>テーマを出力するだけで既存のTkinterアプリの全ウィジェットが自動変換されるわけではありません。<code>tk.Button</code> から <code>ttk.Button</code> への変更など、元アプリ側の調整が必要な場合があります。</div>
+<p>File-Searchでは「Urban配色」「アウトライン形状」「標準ttk限定」を組み合わせ、実際にテーマ適用を検証しました。</p></section>
+<section id="mode"><h2>描画モードの違い</h2><div class="table-wrap"><table><thead><tr><th>モード</th><th>特徴</th></tr></thead><tbody>
+<tr><td>標準ttk限定</td><td>標準のttk部品を中心に使用。Canvas製のカスタムボタン・スライダーは使いません。</td></tr>
+<tr><td>ハイブリッド</td><td>必要な部品に限って独自描画を使用。</td></tr>
+<tr><td>デザイン優先</td><td>見た目の自由度を優先し、独自描画も活用。</td></tr>
+</tbody></table></div><p>最初に既存業務アプリへ適用する場合は、「標準ttk限定」で試すと調整箇所を把握しやすくなります。ただし、OSやTkのバージョンによって表示差が生じる場合があります。</p></section>
+<section id="notes"><h2>補足・よくある確認事項</h2><div class="table-wrap"><table><thead><tr><th>質問</th><th>確認すること</th></tr></thead><tbody>
+<tr><td>保存済みテーマはどこ？</td><td>Windowsでは <code>%LOCALAPPDATA%\GUI-Design-Studio\themes</code> に保存します。</td></tr>
+<tr><td>出力ファイルを実行する？</td><td><code>design_theme.py</code> は単独起動ではなく、ほかのアプリからインポートして利用するモジュールです。</td></tr>
+<tr><td>画面の見た目が違う</td><td>フォント、DPIスケーリング、OS、Tkのバージョンで違いが出る場合があります。</td></tr>
+<tr><td>適用したのに部品が変わらない</td><td>元アプリが <code>tk.*</code> 部品か <code>ttk.*</code> 部品か、スタイル名を確認してください。</td></tr>
+</tbody></table></div><p class="tag">本ツールはデザインの作成・出力を行います。出力先アプリの動作検証は別途必要です。</p></section>
+</main>
+<footer>使い方ガイド | 更新日：2026/11/16 | 画面見本はWindows実機で撮影した参考画像です。</footer>
+</body></html>
